@@ -1,5 +1,7 @@
 <script>
+	import H1 from '$components/H1.svelte';
+
 	export let data;
 </script>
 
-<h1 class="text-2xl font-bold text-center">Svelte Advent of Code Challenges</h1>
+<H1>Svelte Advent of Code Challenges</H1>

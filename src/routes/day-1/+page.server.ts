@@ -1,9 +1,14 @@
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ fetch }) => {
+	interface ChildTally {
+		name: string;
+		tally: number;
+	}
+
 	const adventDataResponse = await fetch('https://advent.sveltesociety.dev/data/2023/day-one.json');
 
-	const childrenTallies = await adventDataResponse.json();
+	const childrenTallies: ChildTally[] = (await adventDataResponse.json()) as ChildTally[];
 
 	const listForNaughtyChildren = [];
 	const listForNiceChildren = [];
