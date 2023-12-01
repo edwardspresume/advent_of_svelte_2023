@@ -9,17 +9,20 @@
 
 	const { nice, naughty } = data.naughty_or_nice_list;
 
-	const niceList = nice.sort((a, b) => b.tally - a.tally);
-	const naughtyList = naughty.sort((a, b) => a.tally - b.tally);
+	const lists = [
+		{ list: nice, title: 'Nice children', color: 'green' },
+		{ list: naughty, title: 'Naughty children', color: 'red' }
+	];
 </script>
 
 <H1>Day 1</H1>
-<div class="flex justify-between gap-2">
-	{#each [{ list: niceList, title: 'Nice children', color: 'green' }, { list: naughtyList, title: 'Naughty children', color: 'red' }] as { list, title, color }}
-		<section>
-			<h2 class="mb-3 text-xl font-bold text-{color}-700">{title}</h2>
+<div class="flex flex-wrap justify-around gap-8">
+	{#each lists as { list, title, color }}
+		<section class={color === 'green' ? 'text-green-700' : 'text-red-700'}>
+			<h2 class="mb-3 text-xl font-bold">
+				{title}
+			</h2>
 			<Table.Root class="w-fit">
-				<Table.Caption>A list of {title.toLowerCase()}</Table.Caption>
 				<Table.Header>
 					<Table.Row>
 						<Table.Head class="w-1">#</Table.Head>
@@ -29,7 +32,7 @@
 				</Table.Header>
 				<Table.Body>
 					{#each list as { name, tally }, index}
-						<Table.Row class="hover:bg-{color}-700/20">
+						<Table.Row class={color === 'green' ? 'hover:bg-green-700/20' : 'hover:bg-red-700/20'}>
 							<Table.Cell class="font-medium">{index + 1}</Table.Cell>
 							<Table.Cell class="font-medium">{name}</Table.Cell>
 							<Table.Cell>{tally}</Table.Cell>
