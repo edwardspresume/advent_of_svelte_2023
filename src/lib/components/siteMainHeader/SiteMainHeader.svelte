@@ -12,6 +12,13 @@
 		</Button>
 
 		<div class="flex gap-2">
+			<Button
+				href="https://github.com/edwardspresume/advent_of_svelte_2023"
+				size="icon"
+				variant="outline"
+			>
+				<iconify-icon icon="mdi:github" class="text-2xl"></iconify-icon>
+			</Button>
 			<ThemeToggler />
 		</div>
 	</div>
