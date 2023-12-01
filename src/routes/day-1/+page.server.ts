@@ -1,11 +1,11 @@
 import type { PageServerLoad } from './$types';
 
-export const load = (async ({ fetch }) => {
-	interface JsonData {
-		name: string;
-		tally: number;
-	}
+type JsonData = {
+	name: string;
+	tally: number;
+};
 
+export const load = (async ({ fetch }) => {
 	try {
 		const adventDataResponse = await fetch(
 			'https://advent.sveltesociety.dev/data/2023/day-one.json'
