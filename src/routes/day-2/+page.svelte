@@ -12,11 +12,11 @@
 <p>Cookie munched: {cookieCounter}</p>
 
 <div class="flex gap-2 mt-5">
-	<Button size="icon" onclick={() => cookieCounter++}>
+	<Button size="icon" class="bg-green-700" onclick={() => cookieCounter++}>
 		<PlusIcon />
 	</Button>
 
-	<Button size="icon" onclick={() => cookieCounter--}>
+	<Button size="icon" class="bg-red-700" onclick={() => cookieCounter > 0 && cookieCounter--}>
 		<Minus />
 	</Button>
 
