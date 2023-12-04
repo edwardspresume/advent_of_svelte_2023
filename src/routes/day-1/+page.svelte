@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	import * as Table from '$lib/components/ui/table';
+	import * as Table from '$components/ui/table';
 
 	import H1 from '$components/H1.svelte';
 
