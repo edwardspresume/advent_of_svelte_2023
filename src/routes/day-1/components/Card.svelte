@@ -4,7 +4,7 @@
 			<slot name="title" />
 		</h2>
 
-		<span class="text-2xl [line-height:0]">
+		<span class="text-xl [line-height:0]">
 			<slot name="icon" />
 		</span>
 	</header>
