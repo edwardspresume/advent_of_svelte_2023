@@ -12,7 +12,7 @@
 
 <H1>Svelte Advent of Code Challenges</H1>
 
-<p class="mb-4 text-lg text-center">
+<p class="mb-5 text-lg text-center text-muted-foreground">
 	These are my solutions to the <a
 		class="text-blue-500 transition duration-300 hover:text-blue-600"
 		href="https://advent.sveltesociety.dev/">Advent of Code 2023</a
