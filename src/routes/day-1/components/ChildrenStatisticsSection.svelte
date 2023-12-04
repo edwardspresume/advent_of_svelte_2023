@@ -27,7 +27,7 @@
 		</svelte:fragment>
 
 		<svelte:fragment slot="data">
-			{nicestChild.name} ({nicestChild.tally})
+			{nicestChild.name} <span class="text-green-500">({nicestChild.tally})</span>
 		</svelte:fragment>
 	</Card>
 
@@ -39,7 +39,7 @@
 		</svelte:fragment>
 
 		<svelte:fragment slot="data">
-			{naughtiestChild.name} ({naughtiestChild.tally})
+			{naughtiestChild.name} <span class="text-red-500">({naughtiestChild.tally})</span>
 		</svelte:fragment>
 	</Card>
 
