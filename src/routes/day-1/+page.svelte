@@ -16,6 +16,7 @@
 </script>
 
 <H1>Day 1</H1>
+
 <div class="flex flex-wrap justify-around gap-8">
 	{#each lists as { list, title, color }}
 		<section class={color === 'green' ? 'text-green-700' : 'text-red-700'}>

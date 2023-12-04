@@ -2,7 +2,6 @@
 	import { PAGES } from '$lib/ROUTES';
 
 	import Button from '$components/ui/button/button.svelte';
-	import SiteMainNav from './SiteMainNav.svelte';
 	import ThemeToggler from './ThemeToggler.svelte';
 </script>
 
@@ -12,9 +11,6 @@
 			>Advent Of Svelte 2023</Button
 		>
 
-		<div class="flex gap-2">
-			<ThemeToggler />
-			<SiteMainNav />
-		</div>
+		<ThemeToggler />
 	</div>
 </header>
