@@ -1,13 +1,6 @@
 import type { PageServerLoad } from './$types';
 
-type JsonData = {
-	name: string;
-	tally: number;
-};
-
-type NaughtyOrNiceEntry = JsonData & {
-	category: 'nice' | 'naughty';
-};
+import type { JsonData, NaughtyOrNiceEntry } from '$lib/types';
 
 export const load = (async ({ fetch }) => {
 	let naughty_or_nice_list: NaughtyOrNiceEntry[] = [];

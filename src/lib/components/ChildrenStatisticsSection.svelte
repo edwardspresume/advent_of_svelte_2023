@@ -1,5 +1,11 @@
-<script>
+<script lang="ts">
+	import type { NaughtyOrNiceEntry } from '$lib/types';
+
 	import Card from '$components/Card.svelte';
+
+	export let totalChildren: Number;
+	export let nicestChild: NaughtyOrNiceEntry;
+	export let naughtiestChild: NaughtyOrNiceEntry;
 </script>
 
 <section class="grid gap-6 mb-10 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
@@ -10,7 +16,7 @@
 			<iconify-icon icon="teenyicons:circle-solid" class="text-blue-500"></iconify-icon>
 		</svelte:fragment>
 
-		<svelte:fragment slot="data">100</svelte:fragment>
+		<svelte:fragment slot="data">{totalChildren}</svelte:fragment>
 	</Card>
 
 	<Card>
@@ -20,7 +26,9 @@
 			<iconify-icon icon="noto:baby-angel"></iconify-icon>
 		</svelte:fragment>
 
-		<svelte:fragment slot="data">100</svelte:fragment>
+		<svelte:fragment slot="data">
+			{nicestChild.name} ({nicestChild.tally})
+		</svelte:fragment>
 	</Card>
 
 	<Card>
@@ -30,7 +38,9 @@
 			<iconify-icon icon="fxemoji:devilhorns"></iconify-icon>
 		</svelte:fragment>
 
-		<svelte:fragment slot="data">100</svelte:fragment>
+		<svelte:fragment slot="data">
+			{naughtiestChild.name} ({naughtiestChild.tally})
+		</svelte:fragment>
 	</Card>
 
 	<Card>
