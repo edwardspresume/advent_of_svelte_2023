@@ -4,9 +4,8 @@
 	import { createTable, Render, Subscribe } from 'svelte-headless-table';
 	import { addPagination } from 'svelte-headless-table/plugins';
 
-	import { Button } from '$components/ui/button';
 	import * as Table from '$components/ui/table';
-	import TableRowSelector from './TableRowSelector.svelte';
+	import TablePagination from './TablePagination.svelte';
 
 	export let data;
 
@@ -32,7 +31,7 @@
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
 		table.createViewModel(columns);
 
-	const { hasNextPage, hasPreviousPage, pageIndex, pageSize } = pluginStates.page;
+	const { hasNextPage, hasPreviousPage, pageIndex, pageSize, pageCount } = pluginStates.page;
 </script>
 
 <div class="border rounded-md">
@@ -70,19 +69,10 @@
 	</Table.Root>
 </div>
 
-<section class="flex items-center justify-end py-4 space-x-2">
-	<TableRowSelector bind:currentPageSize={$pageSize} />
-
-	<Button
-		variant="outline"
-		size="sm"
-		on:click={() => ($pageIndex = $pageIndex - 1)}
-		disabled={!$hasPreviousPage}>Previous</Button
-	>
-	<Button
-		variant="outline"
-		size="sm"
-		disabled={!$hasNextPage}
-		on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
-	>
-</section>
+<TablePagination
+	bind:pageSize={$pageSize}
+	bind:pageIndex={$pageIndex}
+	pageCount={$pageCount}
+	hasPreviousPage={$hasPreviousPage}
+	hasNextPage={$hasNextPage}
+/>
