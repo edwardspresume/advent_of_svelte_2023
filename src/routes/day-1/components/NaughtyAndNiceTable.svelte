@@ -2,12 +2,17 @@
 	import { readable } from 'svelte/store';
 
 	import { createTable, Render, Subscribe } from 'svelte-headless-table';
+	import { addPagination } from 'svelte-headless-table/plugins';
 
-	import * as Table from '$lib/components/ui/table';
+	import { Button } from '$components/ui/button';
+	import * as Table from '$components/ui/table';
+	import TableRowSelector from './TableRowSelector.svelte';
 
 	export let data;
 
-	const table = createTable(readable(data));
+	const table = createTable(readable(data), {
+		page: addPagination()
+	});
 
 	const columns = table.createColumns([
 		table.column({
@@ -24,7 +29,10 @@
 		})
 	]);
 
-	const { headerRows, pageRows, tableAttrs, tableBodyAttrs } = table.createViewModel(columns);
+	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
+		table.createViewModel(columns);
+
+	const { hasNextPage, hasPreviousPage, pageIndex, pageSize } = pluginStates.page;
 </script>
 
 <div class="border rounded-md">
@@ -61,3 +69,20 @@
 		</Table.Body>
 	</Table.Root>
 </div>
+
+<section class="flex items-center justify-end py-4 space-x-2">
+	<TableRowSelector bind:currentPageSize={$pageSize} />
+
+	<Button
+		variant="outline"
+		size="sm"
+		on:click={() => ($pageIndex = $pageIndex - 1)}
+		disabled={!$hasPreviousPage}>Previous</Button
+	>
+	<Button
+		variant="outline"
+		size="sm"
+		disabled={!$hasNextPage}
+		on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
+	>
+</section>
