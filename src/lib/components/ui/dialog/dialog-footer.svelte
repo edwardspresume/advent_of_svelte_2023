@@ -1,21 +1,19 @@
 <script lang="ts">
-	import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils/styleTransitionUtils";
 	import type { HTMLAttributes } from "svelte/elements";
 
-	type $$Props = HTMLAttributes<HTMLTableRowElement> & {
-		"data-state"?: unknown;
-	};
+	type $$Props = HTMLAttributes<HTMLDivElement>;
 
 	let className: $$Props["class"] = undefined;
 	export { className as class };
 </script>
 
-<tr
+<div
 	class={cn(
-		"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+		"flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
 		className
 	)}
 	{...$$restProps}
 >
 	<slot />
-</tr>
+</div>

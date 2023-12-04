@@ -17,6 +17,11 @@ const config = {
 			$assets: 'src/lib/assets',
 			$components: 'src/lib/components',
 			$validations: 'src/lib/validations'
+		},
+
+		// remove this if you don't want prerendering
+		prerender: {
+			entries: ['/sitemap.xml']
 		}
 	},
 

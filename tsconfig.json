@@ -11,6 +11,7 @@
 		"strict": true,
 		"moduleResolution": "bundler",
 
+		// Added by me
 		"noUnusedLocals": true,
 		"moduleDetection": "force",
 		"noUnusedParameters": true,
@@ -19,7 +20,8 @@
 		"noImplicitReturns": true,
 		"exactOptionalPropertyTypes": true,
 		"noImplicitOverride": true,
-		"noPropertyAccessFromIndexSignature": true
+		"noPropertyAccessFromIndexSignature": true,
+		"types": ["vitest/globals"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

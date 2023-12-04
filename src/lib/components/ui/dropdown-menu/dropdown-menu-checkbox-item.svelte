@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
-	import { cn } from "$lib/utils";
+	import { cn } from "$lib/utils/styleTransitionUtils";
 	import { Check } from "lucide-svelte";
 
 	type $$Props = DropdownMenuPrimitive.CheckboxItemProps;
