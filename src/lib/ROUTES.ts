@@ -7,7 +7,7 @@
 /**
  * PAGES
  */
-const PAGES = {
+export const PAGES = {
   "/": `/`,
   "/day-1": `/day-1`,
   "/day-2": `/day-2`
@@ -16,21 +16,21 @@ const PAGES = {
 /**
  * SERVERS
  */
-const SERVERS = {
+export const SERVERS = {
   
 }
 
 /**
  * ACTIONS
  */
-const ACTIONS = {
+export const ACTIONS = {
   
 }
 
 /**
  * LINKS
  */
-const LINKS = {
+export const LINKS = {
   
 }
 
@@ -65,33 +65,6 @@ export const currentSp = () => {
     record[key] = value
   }
   return record
-}
-
-// route function helpers
-type NonFunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? never : K }[keyof T]
-type FunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T]
-type FunctionParams<T> = T extends (...args: infer P) => any ? P : never
-
-const AllObjs = { ...PAGES, ...ACTIONS, ...SERVERS, ...LINKS }
-type AllTypes = typeof AllObjs
-
-/**
- * To be used like this: 
- * ```ts
- * import { route } from './ROUTES'
- * 
- * route('site_id', { id: 1 })
- * ```
- */
-export function route<T extends FunctionKeys<AllTypes>>(key: T, ...params: FunctionParams<AllTypes[T]>): string
-export function route<T extends NonFunctionKeys<AllTypes>>(key: T): string
-export function route<T extends keyof AllTypes>(key: T, ...params: any[]): string {
-  if (AllObjs[key] as any instanceof Function) {
-    const element = (AllObjs as any)[key] as (...args: any[]) => string
-    return element(...params)
-  } else {
-    return AllObjs[key] as string
-  }
 }
 
 /**

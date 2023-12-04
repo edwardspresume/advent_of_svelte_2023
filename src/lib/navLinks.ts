@@ -1,5 +1,5 @@
 import type { AriaAttributes } from 'svelte/elements';
-import { route } from './ROUTES';
+import { PAGES } from './ROUTES';
 
 // Type for navigation link
 export type NavLink = {
@@ -37,4 +37,4 @@ export const createNavLink = (
 	};
 };
 
-export const mainNavLinks: NavLink[] = [createNavLink('Home', route('/'), 'Go to homepage')];
+export const mainNavLinks: NavLink[] = [createNavLink('Home', PAGES['/'], 'Go to homepage')];

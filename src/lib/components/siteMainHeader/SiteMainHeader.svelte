@@ -1,5 +1,5 @@
 <script>
-	import { route } from '$lib/ROUTES';
+	import { PAGES } from '$lib/ROUTES';
 
 	import Button from '$components/ui/button/button.svelte';
 	import SiteMainNav from './SiteMainNav.svelte';
@@ -8,7 +8,7 @@
 
 <header class="relative mb-10 border-b">
 	<div class="container flex items-center justify-between p-2">
-		<Button href={route('/')} variant="link" class="text-2xl font-bold"
+		<Button href={PAGES['/']} variant="link" class="text-2xl font-bold"
 			>Advent Of Svelte 2023</Button
 		>
 
