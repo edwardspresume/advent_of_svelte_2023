@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { NaughtyOrNiceEntry } from '$lib/types';
 
-	import Card from '$components/Card.svelte';
+	import Card from './Card.svelte';
 
 	export let totalChildren: Number;
 	export let nicestChild: NaughtyOrNiceEntry;
