@@ -4,8 +4,6 @@
 	import H1 from '$components/H1.svelte';
 	import Button from '$components/ui/button/button.svelte';
 
-	export let data;
-
 	const days = [
 		{ name: 'Day 1', path: route('/day-1') },
 		{ name: 'Day 2', path: route('/day-2') }
