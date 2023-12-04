@@ -6,7 +6,7 @@ type JsonData = {
 };
 
 type NaughtyOrNiceEntry = JsonData & {
-	category: 'Nice' | 'Naughty';
+	category: 'nice' | 'naughty';
 };
 
 export const load = (async ({ fetch }) => {
@@ -27,7 +27,7 @@ export const load = (async ({ fetch }) => {
 			.map(
 				(child): NaughtyOrNiceEntry => ({
 					...child,
-					category: child.tally >= 0 ? 'Nice' : 'Naughty'
+					category: child.tally >= 0 ? 'nice' : 'naughty'
 				})
 			)
 			.sort((a, b) => b.tally - a.tally);
