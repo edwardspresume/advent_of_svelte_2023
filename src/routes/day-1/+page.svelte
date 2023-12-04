@@ -5,6 +5,7 @@
 
 	import H1 from '$components/H1.svelte';
 	import ChildrenStatisticsSection from './components/ChildrenStatisticsSection.svelte';
+	import NaughtyAndNiceTable from './components/NaughtyAndNiceTable.svelte';
 
 	export let data: PageData;
 
@@ -39,4 +40,6 @@
 		{naughtiestChild}
 		totalChildren={$naughty_and_nice_list_store.length}
 	/>
+
+	<NaughtyAndNiceTable data={$naughty_and_nice_list_store} />
 {/if}
