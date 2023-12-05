@@ -1,14 +1,15 @@
 <script lang="ts">
-	import type { NaughtyOrNiceEntry } from '$lib/types';
+	import type { NaughtyOrNiceEntry } from '../types';
 
 	import Card from './Card.svelte';
 
+	export let addedByYou: Number;
 	export let totalChildren: Number;
 	export let nicestChild: NaughtyOrNiceEntry;
 	export let naughtiestChild: NaughtyOrNiceEntry;
 </script>
 
-<section class="grid gap-6 mb-10 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
+<section class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
 	<Card>
 		<svelte:fragment slot="title">Total Children</svelte:fragment>
 
@@ -50,6 +51,6 @@
 			<iconify-icon icon="gala:add" class="text-green-500"></iconify-icon>
 		</svelte:fragment>
 
-		<svelte:fragment slot="data">0</svelte:fragment>
+		<svelte:fragment slot="data">{addedByYou}</svelte:fragment>
 	</Card>
 </section>
