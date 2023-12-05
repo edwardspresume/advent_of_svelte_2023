@@ -5,8 +5,8 @@
 
 	export let addedByYou: Number;
 	export let totalChildren: Number;
-	export let nicestChild: NaughtyOrNiceEntry;
-	export let naughtiestChild: NaughtyOrNiceEntry;
+	export let nicestChild: NaughtyOrNiceEntry | undefined;
+	export let naughtiestChild: NaughtyOrNiceEntry | undefined;
 </script>
 
 <section class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">

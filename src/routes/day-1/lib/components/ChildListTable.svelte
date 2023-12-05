@@ -5,9 +5,9 @@
 	import * as Table from '$components/ui/table';
 	import TablePagination from './TablePagination.svelte';
 
-	export let naughty_and_nice_list_store;
+	export let childListStore;
 
-	const table = createTable(naughty_and_nice_list_store, {
+	const table = createTable(childListStore, {
 		page: addPagination()
 	});
 

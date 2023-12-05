@@ -7,23 +7,23 @@
 	import H1 from '$components/H1.svelte';
 	import InputField from '$components/form/InputField.svelte';
 	import Button from '$components/ui/button/button.svelte';
+	import ChildListTable from './lib/components/ChildListTable.svelte';
 	import ChildrenStatisticsSection from './lib/components/ChildrenStatisticsSection.svelte';
-	import NaughtyAndNiceTable from './lib/components/NaughtyAndNiceTable.svelte';
 
 	export let data: PageData;
 
-	const naughty_and_nice_list_store = writable(data.naughty_and_nice_list);
+	const childListStore = writable(data.childList);
 
-	$: nicestChild = [...$naughty_and_nice_list_store].sort((a, b) => b.tally - a.tally)[0];
-	$: naughtiestChild = [...$naughty_and_nice_list_store].sort((a, b) => a.tally - b.tally)[0];
+	$: nicestChild = [...$childListStore].sort((a, b) => b.tally - a.tally)[0];
+	$: naughtiestChild = [...$childListStore].sort((a, b) => a.tally - b.tally)[0];
 
 	let newChildName: string;
 	let newChildTally: string;
 	let addedByYou = 0;
 
 	function addChild() {
-		$naughty_and_nice_list_store = [
-			...$naughty_and_nice_list_store,
+		$childListStore = [
+			...$childListStore,
 			{
 				name: newChildName,
 				tally: +newChildTally,
@@ -42,7 +42,7 @@
 
 <H1>Day 1</H1>
 
-{#if $naughty_and_nice_list_store.length === 0}
+{#if $childListStore.length === 0}
 	<p class="text-center">You haven't added any children yet.</p>
 {:else}
 	<div class="grid gap-8">
@@ -50,7 +50,7 @@
 			{addedByYou}
 			{nicestChild}
 			{naughtiestChild}
-			totalChildren={$naughty_and_nice_list_store.length}
+			totalChildren={$childListStore.length}
 		/>
 
 		<section class="flex flex-col justify-between gap-3 sm:flex-row">
@@ -67,13 +67,13 @@
 			<Button
 				on:click={() => {
 					addedByYou = 0;
-					$naughty_and_nice_list_store = data.naughty_and_nice_list;
+					$childListStore = data.childList;
 				}}
 			>
 				Reset
 			</Button>
 		</section>
 
-		<NaughtyAndNiceTable {naughty_and_nice_list_store} />
+		<ChildListTable {childListStore} />
 	</div>
 {/if}

@@ -1,9 +1,9 @@
 import type { PageServerLoad } from './$types';
 
-import type { JsonData, NaughtyOrNiceEntry } from '$lib/types';
+import type { JsonData, NaughtyOrNiceEntry } from './lib/types';
 
 export const load = (async ({ fetch }) => {
-	let naughty_and_nice_list: NaughtyOrNiceEntry[] = [];
+	let childList: NaughtyOrNiceEntry[] = [];
 
 	try {
 		const adventDataResponse = await fetch(
@@ -16,7 +16,7 @@ export const load = (async ({ fetch }) => {
 
 		const adventDataJson = (await adventDataResponse.json()) as JsonData[];
 
-		naughty_and_nice_list = adventDataJson
+		childList = adventDataJson
 			.map(
 				(child): NaughtyOrNiceEntry => ({
 					...child,
@@ -25,14 +25,10 @@ export const load = (async ({ fetch }) => {
 			)
 			.sort((a, b) => b.tally - a.tally);
 
-		return {
-			naughty_and_nice_list
-		};
+		return { childList };
 	} catch (error) {
 		console.error('Error loading advent data:', error);
 
-		return {
-			naughty_and_nice_list
-		};
+		return { childList };
 	}
 }) satisfies PageServerLoad;
