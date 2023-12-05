@@ -12,7 +12,9 @@
 
 	const table = createTable(childListStore, {
 		page: addPagination(),
-		sort: addSortBy(),
+		sort: addSortBy({
+			toggleOrder: ['asc', 'desc']
+		}),
 		filter: addTableFilter({
 			fn: ({ filterValue, value }) => value.toLowerCase().includes(filterValue.toLowerCase())
 		})
