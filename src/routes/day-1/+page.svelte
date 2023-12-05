@@ -12,32 +12,11 @@
 
 	const naughty_and_nice_list_store = writable(data.naughty_and_nice_list);
 
-	$: nicestChild = $naughty_and_nice_list_store
-		.filter((child) => child.category === 'nice')
-		.reduce(
-			(previous, current) => {
-				if (current.tally > previous.tally) {
-					return current;
-				}
-				return previous;
-			},
-			{ name: '', tally: 0 }
-		);
-
-	$: naughtiestChild = $naughty_and_nice_list_store
-		.filter((child) => child.category === 'naughty')
-		.reduce(
-			(previous, current) => {
-				if (current.tally < previous.tally) {
-					return current;
-				}
-				return previous;
-			},
-			{ name: '', tally: 0 }
-		);
+	$: nicestChild = $naughty_and_nice_list_store.sort((a, b) => b.tally - a.tally)[0];
+	$: naughtiestChild = $naughty_and_nice_list_store.sort((a, b) => a.tally - b.tally)[0];
 
 	let newChildName: string;
-	let newChildTally: number = 10;
+	let newChildTally: number = 210;
 
 	function addChild() {
 		$naughty_and_nice_list_store = [
