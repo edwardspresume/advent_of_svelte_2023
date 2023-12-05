@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { writable } from 'svelte/store';
 	import type { PageData } from './$types';
 
-	import { writable } from 'svelte/store';
-
 	import H1 from '$components/H1.svelte';
-	import ChildrenStatisticsSection from './components/ChildrenStatisticsSection.svelte';
-	import NaughtyAndNiceTable from './components/NaughtyAndNiceTable.svelte';
+	import InputField from '$components/form/InputField.svelte';
+	import Button from '$components/ui/button/button.svelte';
+	import ChildrenStatisticsSection from './lib/components/ChildrenStatisticsSection.svelte';
+	import NaughtyAndNiceTable from './lib/components/NaughtyAndNiceTable.svelte';
 
 	export let data: PageData;
 
@@ -13,21 +14,41 @@
 
 	$: nicestChild = $naughty_and_nice_list_store
 		.filter((child) => child.category === 'nice')
-		.reduce((previous, current) => {
-			if (current.tally > previous.tally) {
-				return current;
-			}
-			return previous;
-		});
+		.reduce(
+			(previous, current) => {
+				if (current.tally > previous.tally) {
+					return current;
+				}
+				return previous;
+			},
+			{ name: '', tally: 0 }
+		);
 
 	$: naughtiestChild = $naughty_and_nice_list_store
 		.filter((child) => child.category === 'naughty')
-		.reduce((previous, current) => {
-			if (current.tally < previous.tally) {
-				return current;
+		.reduce(
+			(previous, current) => {
+				if (current.tally < previous.tally) {
+					return current;
+				}
+				return previous;
+			},
+			{ name: '', tally: 0 }
+		);
+
+	let newChildName: string;
+	let newChildTally: number = 10;
+
+	function addChild() {
+		$naughty_and_nice_list_store = [
+			...$naughty_and_nice_list_store,
+			{
+				name: newChildName,
+				tally: newChildTally,
+				category: newChildTally >= 0 ? 'nice' : 'naughty'
 			}
-			return previous;
-		});
+		];
+	}
 </script>
 
 <H1>Day 1</H1>
@@ -41,5 +62,20 @@
 		totalChildren={$naughty_and_nice_list_store.length}
 	/>
 
-	<NaughtyAndNiceTable data={$naughty_and_nice_list_store} />
+	<div class="flex justify-between gap-2">
+		<form
+			class="grid items-center gap-2 mb-4 grid-cols-[repeat(auto-fit,minmax(200px,1fr))]"
+			on:submit|preventDefault={addChild}
+		>
+			<InputField type="text" placeholder="Name" bind:value={newChildName} />
+
+			<Button size="sm" class="w-full" type="submit">Add Child</Button>
+		</form>
+
+		<Button on:click={() => ($naughty_and_nice_list_store = data.naughty_and_nice_list)}>
+			Reset
+		</Button>
+	</div>
+
+	<NaughtyAndNiceTable {naughty_and_nice_list_store} />
 {/if}

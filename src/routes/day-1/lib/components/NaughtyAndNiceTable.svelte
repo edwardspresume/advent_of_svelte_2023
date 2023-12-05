@@ -1,15 +1,13 @@
 <script lang="ts">
-	import { readable } from 'svelte/store';
-
 	import { createTable, Render, Subscribe } from 'svelte-headless-table';
 	import { addPagination } from 'svelte-headless-table/plugins';
 
 	import * as Table from '$components/ui/table';
 	import TablePagination from './TablePagination.svelte';
 
-	export let data;
+	export let naughty_and_nice_list_store;
 
-	const table = createTable(readable(data), {
+	const table = createTable(naughty_and_nice_list_store, {
 		page: addPagination()
 	});
 
