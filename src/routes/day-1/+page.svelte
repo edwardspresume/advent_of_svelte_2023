@@ -58,18 +58,8 @@
 				class="flex flex-col w-full gap-3 sm:flex-row sm:items-center"
 				on:submit|preventDefault={addChild}
 			>
-				<InputField
-					required
-					type="text"
-					placeholder="Add the child's name..."
-					bind:value={newChildName}
-				/>
-				<InputField
-					required
-					type="number"
-					placeholder="Add the child's tally..."
-					bind:value={newChildTally}
-				/>
+				<InputField required type="text" placeholder="Child's name" bind:value={newChildName} />
+				<InputField required type="number" placeholder="Child's tally" bind:value={newChildTally} />
 
 				<Button size="sm" type="submit">Add Child</Button>
 			</form>
