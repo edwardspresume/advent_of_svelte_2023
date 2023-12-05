@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { createTable, Render, Subscribe } from 'svelte-headless-table';
-	import { addPagination, addSortBy } from 'svelte-headless-table/plugins';
+	import { addPagination, addSortBy, addTableFilter } from 'svelte-headless-table/plugins';
 
+	import InputField from '$components/form/InputField.svelte';
 	import Button from '$components/ui/button/button.svelte';
 	import * as Table from '$components/ui/table';
 	import { ArrowUpDown } from 'lucide-svelte';
@@ -11,7 +12,10 @@
 
 	const table = createTable(childListStore, {
 		page: addPagination(),
-		sort: addSortBy()
+		sort: addSortBy(),
+		filter: addTableFilter({
+			fn: ({ filterValue, value }) => value.toLowerCase().includes(filterValue.toLowerCase())
+		})
 	});
 
 	const columns = table.createColumns([
@@ -21,11 +25,21 @@
 		}),
 		table.column({
 			accessor: 'category',
-			header: 'Category'
+			header: 'Category',
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
 		}),
 		table.column({
 			accessor: 'tally',
-			header: 'Tally'
+			header: 'Tally',
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
 		})
 	]);
 
@@ -33,9 +47,14 @@
 		table.createViewModel(columns);
 
 	const { hasNextPage, hasPreviousPage, pageIndex, pageSize, pageCount } = pluginStates.page;
+	const { filterValue } = pluginStates.filter;
 </script>
 
 <div class="border rounded-md">
+	<div class="flex items-center p-4">
+		<InputField placeholder="Filter name..." type="text" bind:value={$filterValue} />
+	</div>
+
 	<div class="overflow-auto max-h-[578px]">
 		<Table.Root {...$tableAttrs}>
 			<Table.Header>
