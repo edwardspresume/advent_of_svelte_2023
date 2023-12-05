@@ -1,14 +1,17 @@
 <script lang="ts">
 	import { createTable, Render, Subscribe } from 'svelte-headless-table';
-	import { addPagination } from 'svelte-headless-table/plugins';
+	import { addPagination, addSortBy } from 'svelte-headless-table/plugins';
 
+	import Button from '$components/ui/button/button.svelte';
 	import * as Table from '$components/ui/table';
+	import { ArrowUpDown } from 'lucide-svelte';
 	import TablePagination from './TablePagination.svelte';
 
 	export let childListStore;
 
 	const table = createTable(childListStore, {
-		page: addPagination()
+		page: addPagination(),
+		sort: addSortBy()
 	});
 
 	const columns = table.createColumns([
@@ -40,9 +43,12 @@
 					<Subscribe rowAttrs={headerRow.attrs()}>
 						<Table.Row>
 							{#each headerRow.cells as cell (cell.id)}
-								<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()}>
+								<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
 									<Table.Head {...attrs}>
-										<Render of={cell.render()} />
+										<Button variant="ghost" on:click={props.sort.toggle}>
+											<Render of={cell.render()} />
+											<ArrowUpDown class={'ml-2 h-4 w-4'} />
+										</Button>
 									</Table.Head>
 								</Subscribe>
 							{/each}
