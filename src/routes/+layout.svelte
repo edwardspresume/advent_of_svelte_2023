@@ -10,7 +10,7 @@
 
 <Bar color="#6D28D9" size="big" speed="fast" />
 
-<Toaster richColors closeButton position="top-right" />
+<Toaster richColors closeButton position="top-center" />
 
 <ModeWatcher />
 
