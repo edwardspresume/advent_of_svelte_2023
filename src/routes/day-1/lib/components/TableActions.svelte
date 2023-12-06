@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { childListStore } from '../../+page.svelte';
 
-	import Button from '$components/ui/button/button.svelte';
 	import { Minus, Plus, Trash } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
+	
+	import Button from '$components/ui/button/button.svelte';
 
 	export let id: string;
 
