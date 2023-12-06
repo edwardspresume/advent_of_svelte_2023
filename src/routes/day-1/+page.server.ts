@@ -19,6 +19,7 @@ export const load = (async ({ fetch }) => {
 		childList = adventDataJson
 			.map(
 				(child): NaughtyOrNiceEntry => ({
+					id: crypto.randomUUID(),
 					...child,
 					category: child.tally >= 0 ? 'nice' : 'naughty'
 				})

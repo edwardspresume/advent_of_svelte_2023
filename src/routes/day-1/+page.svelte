@@ -1,5 +1,11 @@
-<script lang="ts">
+<script context="module" lang="ts">
 	import { writable } from 'svelte/store';
+	import type { NaughtyOrNiceEntry } from './lib/types';
+
+	export const childListStore = writable<NaughtyOrNiceEntry[]>([]);
+</script>
+
+<script lang="ts">
 	import type { PageData } from './$types';
 
 	import { toast } from 'svelte-sonner';
@@ -12,7 +18,7 @@
 
 	export let data: PageData;
 
-	const childListStore = writable(data.childList);
+	childListStore.set(data.childList);
 
 	$: nicestChild = [...$childListStore].sort((a, b) => b.tally - a.tally)[0];
 	$: naughtiestChild = [...$childListStore].sort((a, b) => a.tally - b.tally)[0];
@@ -25,6 +31,7 @@
 		$childListStore = [
 			...$childListStore,
 			{
+				id: crypto.randomUUID(),
 				name: newChildName,
 				tally: +newChildTally,
 				category: +newChildTally >= 0 ? 'nice' : 'naughty'
@@ -74,6 +81,6 @@
 			</Button>
 		</section>
 
-		<ChildListTable {childListStore} />
+		<ChildListTable />
 	</div>
 {/if}

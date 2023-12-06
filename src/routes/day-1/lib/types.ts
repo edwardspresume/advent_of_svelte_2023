@@ -4,5 +4,6 @@ export type JsonData = {
 };
 
 export type NaughtyOrNiceEntry = JsonData & {
+	id: string;
 	category: 'nice' | 'naughty';
 };

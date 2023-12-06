@@ -1,20 +1,23 @@
 <script lang="ts">
-	import { createTable, Render, Subscribe } from 'svelte-headless-table';
+	import { Render, Subscribe, createRender, createTable } from 'svelte-headless-table';
 	import { addPagination, addSortBy, addTableFilter } from 'svelte-headless-table/plugins';
+
+	import { childListStore } from '../../+page.svelte';
 
 	import InputField from '$components/form/InputField.svelte';
 	import Button from '$components/ui/button/button.svelte';
 	import * as Table from '$components/ui/table';
 	import { ArrowUpDown } from 'lucide-svelte';
+	import TableActions from './TableActions.svelte';
 	import TablePagination from './TablePagination.svelte';
-
-	export let childListStore;
 
 	const table = createTable(childListStore, {
 		page: addPagination(),
+
 		sort: addSortBy({
 			toggleOrder: ['asc', 'desc']
 		}),
+
 		filter: addTableFilter({
 			fn: ({ filterValue, value }) => value.toLowerCase().includes(filterValue.toLowerCase())
 		})
@@ -25,6 +28,7 @@
 			accessor: 'name',
 			header: 'Name'
 		}),
+
 		table.column({
 			accessor: 'category',
 			header: 'Category',
@@ -34,6 +38,7 @@
 				}
 			}
 		}),
+
 		table.column({
 			accessor: 'tally',
 			header: 'Tally',
@@ -41,6 +46,19 @@
 				filter: {
 					exclude: true
 				}
+			}
+		}),
+
+		table.column({
+			accessor: ({ id }) => id,
+			header: 'Actions',
+			plugins: {
+				sort: {
+					disable: true
+				}
+			},
+			cell: ({ value }) => {
+				return createRender(TableActions, { id: value });
 			}
 		})
 	]);
@@ -65,11 +83,15 @@
 						<Table.Row>
 							{#each headerRow.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
-									<Table.Head {...attrs}>
-										<Button variant="ghost" on:click={props.sort.toggle}>
+									<Table.Head {...attrs} class={cell.id === 'tally' ? 'text-right' : ''}>
+										{#if cell.id === 'Actions'}
 											<Render of={cell.render()} />
-											<ArrowUpDown class={'ml-2 h-4 w-4'} />
-										</Button>
+										{:else}
+											<Button variant="ghost" on:click={props.sort.toggle}>
+												<Render of={cell.render()} />
+												<ArrowUpDown class={'ml-2 h-4 w-4'} />
+											</Button>
+										{/if}
 									</Table.Head>
 								</Subscribe>
 							{/each}
@@ -83,9 +105,19 @@
 						<Table.Row {...rowAttrs}>
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
-									<Table.Cell {...attrs}>
-										<Render of={cell.render()} />
-									</Table.Cell>
+									{#if cell.id === 'tally'}
+										<Table.Cell {...attrs} class="pr-8 text-right">
+											<Render of={cell.render()} />
+										</Table.Cell>
+									{:else if cell.id === 'Actions'}
+										<Table.Cell {...attrs} class="border-l w-[170px]">
+											<Render of={cell.render()} />
+										</Table.Cell>
+									{:else}
+										<Table.Cell {...attrs} class="pl-7">
+											<Render of={cell.render()} />
+										</Table.Cell>
+									{/if}
 								</Subscribe>
 							{/each}
 						</Table.Row>
