@@ -70,7 +70,7 @@
 	const { filterValue } = pluginStates.filter;
 </script>
 
-<div class="border rounded-md">
+<div class="w-full overflow-auto border rounded-md">
 	<div class="flex items-center p-4">
 		<InputField placeholder="Filter name..." type="text" bind:value={$filterValue} />
 	</div>
