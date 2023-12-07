@@ -47,7 +47,7 @@
 	}
 </script>
 
-<H1>Day 1</H1>
+<H1>Day 1: Naughty Or Nice</H1>
 
 {#if $childListStore.length === 0}
 	<p class="text-center">You haven't added any children yet.</p>
