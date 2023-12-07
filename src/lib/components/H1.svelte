@@ -1,3 +1,3 @@
-<h1 class="text-2xl font-bold text-center mb-7">
+<h1 class="mb-10 text-2xl font-bold text-center">
 	<slot />
 </h1>
