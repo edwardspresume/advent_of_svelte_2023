@@ -17,7 +17,7 @@
 <div class="flex flex-col h-[100svh]">
 	<SiteMainHeader />
 
-	<main class="container flex-1 p-2 pb-10">
+	<main class="container flex-1 p-2 pb-16">
 		<slot />
 	</main>
 
