@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { NaughtyOrNiceEntry } from '../types';
 
-	import Card from './Card.svelte';
+	import Card from '$components/Card.svelte';
 
 	export let addedByYou: Number;
 	export let totalChildren: Number;
@@ -28,7 +28,7 @@
 		</svelte:fragment>
 
 		<svelte:fragment slot="data">
-			{nicestChild.name} <span class="text-green-500">({nicestChild.tally})</span>
+			{nicestChild?.name} <span class="text-green-500">({nicestChild?.tally})</span>
 		</svelte:fragment>
 	</Card>
 
@@ -40,7 +40,7 @@
 		</svelte:fragment>
 
 		<svelte:fragment slot="data">
-			{naughtiestChild.name} <span class="text-red-500">({naughtiestChild.tally})</span>
+			{naughtiestChild?.name} <span class="text-red-500">({naughtiestChild?.tally})</span>
 		</svelte:fragment>
 	</Card>
 
