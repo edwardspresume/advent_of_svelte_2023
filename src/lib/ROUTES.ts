@@ -10,7 +10,8 @@
 export const PAGES = {
   "/": `/`,
   "/day-1": `/day-1`,
-  "/day-2": `/day-2`
+  "/day-2": `/day-2`,
+  "/day-3": `/day-3`
 }
 
 /**
@@ -83,7 +84,7 @@ export const currentSp = () => {
 * ```
 */
 export type KIT_ROUTES = { 
-  PAGES: { '/': never, '/day-1': never, '/day-2': never }
+  PAGES: { '/': never, '/day-1': never, '/day-2': never, '/day-3': never }
   SERVERS: Record<string, never>
   ACTIONS: Record<string, never>
   LINKS: Record<string, never>
