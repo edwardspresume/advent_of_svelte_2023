@@ -1,10 +1,5 @@
 import type { PageServerLoad } from './$types';
-
-type ChildGiftType = {
-	id: number;
-	name: string;
-	weight: number;
-};
+import type { ChildGiftType } from './lib/types';
 
 export const load = (async ({ fetch }) => {
 	try {
