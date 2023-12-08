@@ -13,7 +13,7 @@
 		<slot name="data" />
 	</var>
 
-	<p class="text-xm text-muted-foreground">
+	<p class="text-xs text-muted-foreground">
 		<slot name="dataDescription" />
 	</p>
 </article>
