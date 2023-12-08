@@ -71,7 +71,7 @@
 	</section>
 
 	<header class="flex flex-wrap items-center justify-between gap-3 mb-1 mt-7">
-		<p>Cookie munched: {$cookieCount}</p>
+		<p>Cookies munched: {$cookieCount}</p>
 		<p>Santa status: <span class="text-2xl">{$santaStatus}</span></p>
 	</header>
 
