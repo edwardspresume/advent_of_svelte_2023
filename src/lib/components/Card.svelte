@@ -1,4 +1,4 @@
-<article class="w-full p-6 border rounded-lg shadow bg-accent">
+<article class="w-full p-2 border rounded-lg shadow sm:p-6 bg-accent">
 	<header class="flex items-center justify-between gap-2 mb-4">
 		<h2 class="font-semibold leading-none whitespace-nowrap">
 			<slot name="title" />
