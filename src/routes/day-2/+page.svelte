@@ -57,7 +57,7 @@
 			class="bg-red-600 select-none"
 			disabled={$cookieCount === 0 || $isResetting}
 			aria-label="Decrease cookie count"
-			on:click={() => $cookieCount > 0 && $cookieCount--}
+			on:click={() => $cookieCount--}
 		>
 			<Minus />
 		</Button>
